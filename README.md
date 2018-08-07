@@ -5,4 +5,5 @@ TCA9555 Arduino Library
 
 An Arduino Library for 16-bit I2C I/O expander TCA9555. Please refer to <a href="http://www.kerrywong.com/2011/03/05/tca9555-library-for-arduino/">TCA9555 Library for Arduino</a> for more details.
 
-This library has been updated to work on the more recent version of the Arduino IDE
+This library has been updated to work on the more recent version of the Arduino IDE.
+Changes are minor but include WProgram.h -> Arduino.h, Wire.send -> Wire.write and Wire.receive -> Wire.read

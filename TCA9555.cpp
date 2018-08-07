@@ -26,19 +26,24 @@ TCA9555::TCA9555(byte a2, byte a1, byte a0)
 void TCA9555::setPortDirection(byte dir)
 {
   Wire.beginTransmission(I2CAddr);
-  Wire.send(CR_CFG0);
-  Wire.send(dir);
-  Wire.send(dir);
+  Wire.write(CR_CFG0);
+  Wire.write(dir);
+  Wire.write(dir);
   Wire.endTransmission();	
+}
+
+// simple getter for the i2c address.
+byte TCA9555::getI2CAddr() {
+    return I2CAddr;
 }
 
 //portNum: PORT_0 or PORT_1
 void TCA9555::setPortDirection(byte portNum, byte dir)
 {
   Wire.beginTransmission(I2CAddr);
-  if (portNum == PORT_0) Wire.send(CR_CFG0);
-  else Wire.send(CR_CFG1);
-  Wire.send(dir);
+  if (portNum == PORT_0) Wire.write(CR_CFG0);
+  else Wire.write(CR_CFG1);
+  Wire.write(dir);
   Wire.endTransmission();
 }
 
@@ -47,18 +52,18 @@ void TCA9555::setPortDirection(byte portNum, byte dir)
 void TCA9555::setPortPolarity(byte polarity)
 {
   Wire.beginTransmission(I2CAddr);
-  Wire.send(CR_INV0);
-  Wire.send(polarity);
-  Wire.send(polarity);
+  Wire.write(CR_INV0);
+  Wire.write(polarity);
+  Wire.write(polarity);
   Wire.endTransmission();
 }
 
 void TCA9555::setPortPolarity(byte portNum, byte polarity)
 {
   Wire.beginTransmission(I2CAddr);
-  if (portNum == PORT_0) Wire.send(CR_INV0);
-  else Wire.send(CR_INV1);
-  Wire.send(polarity);
+  if (portNum == PORT_0) Wire.write(CR_INV0);
+  else Wire.write(CR_INV1);
+  Wire.write(polarity);
   Wire.endTransmission();
 }
 
@@ -70,18 +75,18 @@ void TCA9555::setOutputStates(word w)
   byte high_byte = (w & 0xff00) >> 8;
 
   Wire.beginTransmission(I2CAddr);
-  Wire.send(CR_OUT0);
-  Wire.send(low_byte);
-  Wire.send(high_byte);
+  Wire.write(CR_OUT0);
+  Wire.write(low_byte);
+  Wire.write(high_byte);
   Wire.endTransmission();
 }
 
 void TCA9555::setOutputStates(byte portNum, byte b)
 {
   Wire.beginTransmission(I2CAddr);
-  if (portNum == PORT_0) Wire.send(CR_OUT0);
-  else Wire.send(CR_OUT1);
-  Wire.send(b);
+  if (portNum == PORT_0) Wire.write(CR_OUT0);
+  else Wire.write(CR_OUT1);
+  Wire.write(b);
   Wire.endTransmission();
 }
 
@@ -95,9 +100,9 @@ word TCA9555::getInputStates()
   Wire.requestFrom(I2CAddr, 2u);
 
   while (!Wire.available()) {};
-  low_byte = Wire.receive();
+  low_byte = Wire.read();
   while (!Wire.available()) {};
-  high_byte = Wire.receive();
+  high_byte = Wire.read();
 
   Wire.endTransmission();
   

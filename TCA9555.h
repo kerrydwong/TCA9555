@@ -2,7 +2,7 @@
 #define TCA9555_H
 
 #include <inttypes.h>
-#include <WProgram.h>
+#include <Arduino.h>
 
 /*
 * TCA9555 Library
@@ -39,6 +39,7 @@ public:
         void setPortPolarity(byte portNum, byte polarity);
 	void setOutputStates(word w);
 	void setOutputStates(byte portNum, byte b);
+    byte getI2CAddr();
 	word getInputStates();
 	byte getInputStates(byte portNum);
 

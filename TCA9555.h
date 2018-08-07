@@ -2,7 +2,7 @@
 #define TCA9555_H
 
 #include <inttypes.h>
-#include <WProgram.h>
+#include <Arduino.h>
 
 /*
 * TCA9555 Library

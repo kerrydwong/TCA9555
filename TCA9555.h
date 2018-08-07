@@ -39,6 +39,7 @@ public:
         void setPortPolarity(byte portNum, byte polarity);
 	void setOutputStates(word w);
 	void setOutputStates(byte portNum, byte b);
+    byte getI2CAddr();
 	word getInputStates();
 	byte getInputStates(byte portNum);
 

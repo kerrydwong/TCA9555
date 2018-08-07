@@ -32,6 +32,11 @@ void TCA9555::setPortDirection(byte dir)
   Wire.endTransmission();	
 }
 
+// simple getter for the i2c address.
+byte TCA9555::getI2CAddr() {
+    return I2CAddr;
+}
+
 //portNum: PORT_0 or PORT_1
 void TCA9555::setPortDirection(byte portNum, byte dir)
 {
